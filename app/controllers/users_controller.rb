@@ -15,6 +15,10 @@ class UsersController < ApplicationController
     end 
 
     def show 
+        @user = User.find_by(id: params[:id])
+        if !@user || @user.id != session[:user_id]
+            redirect_to new_user_path
+        end 
     end 
 
     private 

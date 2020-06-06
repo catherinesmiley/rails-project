@@ -14,4 +14,9 @@ class SessionsController < ApplicationController
         end 
     end 
 
+    def destroy 
+        session.delete :username
+        redirect_to '/signup'
+    end 
+
 end

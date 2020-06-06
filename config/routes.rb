@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   post '/signup' => 'users#create'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
+  post '/logout' => 'sessions#destroy'
   resources :categories
   resources :songs
   resources :playlists

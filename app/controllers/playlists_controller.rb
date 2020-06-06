@@ -1,5 +1,7 @@
 class PlaylistsController < ApplicationController
 
+    before_action :logged_in?
+
     def new 
         @playlist = Playlist.new
     end

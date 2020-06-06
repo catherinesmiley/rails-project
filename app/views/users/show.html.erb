@@ -1,5 +1,7 @@
 <h1>Welcome <%= @user.username %>!</h1>
 
-<%= form_for @user do |f| %>
-    <%= link_to "Log Out", logout_path, method: :post  %>
+<h2>Your Playlists: </h2>
+<% @user.playlists.each do |playlist| %>
+    <%= link_to playlist.name, playlist_path(playlist) %><br>
+    <%= playlist.description %><p>
 <% end %>

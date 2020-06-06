@@ -16,6 +16,12 @@ class PlaylistsController < ApplicationController
 
     def show 
         @playlist = Playlist.find_by(id: params[:id])
+        if !@playlist 
+            redirect_to playlists_path
+        end 
+    end 
+
+    def index 
     end 
 
     private 

@@ -22,6 +22,7 @@ class PlaylistsController < ApplicationController
     end 
 
     def index 
+        @playlists = Playlist.all 
     end 
 
     private 

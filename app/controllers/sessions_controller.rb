@@ -15,12 +15,12 @@ class SessionsController < ApplicationController
     end 
 
     def fb_create
-        @user = User.find_or_create_by(uid: auth['uid']) do |u|
-            u.name = auth['info']['name']
-            u.email = auth['info']['email']
-            u.image = auth['info']['image']
+        @user = User.find_or_create_by(username: auth['info']['email']) do |u|
+            u.username = auth['info']['email']
+            u.password = 'omniauth_password'
+            @user.save 
         end 
-
+ 
         session[:user_id] = @user.id 
 
         render '/application/home'

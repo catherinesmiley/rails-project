@@ -1,11 +1,13 @@
 <% if @user.errors.any? %>
-    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being created:</h2>
+    <div id="field_with_errors">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being created:</h2>
 
-    <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-        <% end %>
-    </ul>
+        <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
 <% end %>
 
 <h1>Sign Up</h1>

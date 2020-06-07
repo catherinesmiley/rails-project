@@ -3,7 +3,7 @@
 <ul>
     <% @playlist.songs.each do |song| %>
         <li>
-            Title: <%= song.title %><br>
+            Title: <%= link_to song.title, song_path(song) %><br>
             Artist: <%= song.artist %><br>
             Genre: <%= song.genre %><br><p>
         </li>

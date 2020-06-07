@@ -3,9 +3,9 @@
 <ul>
     <% @playlist.songs.each do |song| %>
         <li>
-            <%= song.title %><br>
-            <%= song.artist %><br>
-            <%= song.genre %><br>
+            Title: <%= song.title %><br>
+            Artist: <%= song.artist %><br>
+            Genre: <%= song.genre %><br><p>
         </li>
     <% end %>
 </ul>

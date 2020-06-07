@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :categories
   resources :songs
   resources :playlists
-  resources :users
+  resources :users do 
+    resources :playlists 
+  end 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

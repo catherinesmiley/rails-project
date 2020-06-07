@@ -4,6 +4,7 @@ class PlaylistsController < ApplicationController
 
     def new 
         @playlist = Playlist.new
+        @playlist.songs.build
     end
 
     def create 

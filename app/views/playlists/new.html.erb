@@ -7,6 +7,10 @@
     <%= f.text_area :description %><br><br>
 
     <%= f.collection_select :song_ids, Song.all, :id, :name %>
+    <%= f.fields_for :songs do |song| %>
+        <%= song.label :title %>
+        <%= song.text_field :title %>
+    <% end %>
 
     <%= f.submit "Create playlist" %>
 <% end %>

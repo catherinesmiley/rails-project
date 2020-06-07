@@ -6,7 +6,7 @@
     <%= f.label :description %>
     <%= f.text_area :description %><br><br>
 
-    <%= f.collection_select :song_ids, Song.all, :id, :name %><p>
+    <%= f.collection_select :song_ids, Song.all, :id, :title %><p>
     <%= f.fields_for :songs do |song| %>
         <%= song.label :title %>
         <%= song.text_field :title %>

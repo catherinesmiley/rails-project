@@ -3,7 +3,11 @@ class UsersController < ApplicationController
     before_action :logged_in?, except: [:new, :create]
 
     def new 
-        @user = User.new
+        if !current_user
+            @user = User.new
+        else 
+            redirect_to root_path
+        end 
     end 
 
     def create 

@@ -6,4 +6,5 @@ class Playlist < ApplicationRecord
     accepts_nested_attributes_for :songs
 
     validates :name, presence: true 
+
 end

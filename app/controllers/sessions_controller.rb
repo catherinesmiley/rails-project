@@ -18,9 +18,9 @@ class SessionsController < ApplicationController
         @user = User.find_or_create_by(username: auth['info']['email']) do |u|
             u.username = auth['info']['email']
             u.password = 'omniauth_password'
-            @user.save 
         end 
  
+        @user.save
         session[:user_id] = @user.id 
 
         render '/application/home'

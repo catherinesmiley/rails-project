@@ -16,12 +16,14 @@ class SessionsController < ApplicationController
 
     def fb_create
         @user = User.find_or_create_by(username: auth['info']['email'])
-        @user.username = auth['info']['name']
-        @user.password = 'omniauth_password'
+        if !@user.password 
+            @user.password = 'omniauth_password'
+        end 
+
         @user.save
         session[:user_id] = @user.id 
 
-        render '/application/home'
+        redirect_to user_path(@user)
     end 
 
     def destroy 

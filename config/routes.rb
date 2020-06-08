@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   get '/auth/facebook/callback' => 'sessions#fb_create'
   resources :categories
   resources :songs
-  resources :playlists
-  resources :users do 
-    resources :playlists 
+  resources :playlists do 
+    resources :ingredients
   end 
+  resources :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

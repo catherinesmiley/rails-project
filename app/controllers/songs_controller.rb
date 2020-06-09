@@ -9,6 +9,13 @@ class SongsController < ApplicationController
     end 
 
     def new 
+        @song = Song.new(song_params)
+    end 
+
+    private 
+
+    def song_params
+        params.require(:song).permit(:title, :artist, :genre)
     end 
 
 end

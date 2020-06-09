@@ -9,7 +9,8 @@ class SongsController < ApplicationController
     end 
 
     def new 
-        @song = Song.new(song_params)
+        @song = Song.new(playlist_id: params[:playlist_id])  
+        @song.save
     end 
 
     private 

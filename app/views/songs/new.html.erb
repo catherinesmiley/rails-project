@@ -1,0 +1,7 @@
+<h1>Add a new song</h1>
+
+<%= form_for @song do |song| %>
+    <input type="hidden">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+<% end %>

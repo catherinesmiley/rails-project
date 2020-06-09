@@ -9,8 +9,8 @@ class SongsController < ApplicationController
     end 
 
     def new 
-        @song = Song.new(playlist_id: params[:playlist_id])  
-        @song.save
+        @song = Song.new 
+        playlist = Playlist.find_by(id: params[:playlist_id])
     end 
 
     private 

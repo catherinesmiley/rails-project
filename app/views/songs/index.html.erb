@@ -1,9 +1,5 @@
 <h2>All Songs</h2>
 
 <% @songs.each do |song| %>
-    <h3><%= song.title %></h3><br>
-    by: <%= song.artist %><p>
-
-    <%= song.genre %>
-
+    <p><%= link_to song.title, song_path(song) %> by: <%= song.artist %><p>
 <% end %>

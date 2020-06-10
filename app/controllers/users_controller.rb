@@ -7,6 +7,7 @@ class UsersController < ApplicationController
             @user = User.new
         else 
             redirect_to root_path
+            flash[:alert] = "You already have an account!"
         end 
     end 
 

@@ -10,4 +10,5 @@ class User < ApplicationRecord
     def playlist_count 
         self.playlists.length
     end 
+
 end

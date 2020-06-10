@@ -7,4 +7,7 @@ class User < ApplicationRecord
     validates :username, presence: true, uniqueness: true 
     validates :password, presence: true 
 
+    def playlist_count 
+        self.playlists.length
+    end 
 end

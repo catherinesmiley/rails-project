@@ -17,11 +17,9 @@ class SongsController < ApplicationController
             render :new
         end 
         # method to call @playlist.id
-        # either don't allow non-nested route for songs new or add validation here
     end 
 
     def create
-        byebug
         @song = Song.new(song_params)
         if @song.save 
             redirect_to song_path(@song)

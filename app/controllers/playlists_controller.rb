@@ -4,7 +4,7 @@ class PlaylistsController < ApplicationController
 
     def new 
         @playlist = Playlist.new
-        5.times { @playlist.songs.build }
+        @playlist.songs.build
     end
 
     def create 

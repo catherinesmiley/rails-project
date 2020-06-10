@@ -9,7 +9,8 @@
     <h2>Add songs to your new playlist </h2>
     <h4>Select from existing songs: </h4>
 
-    <%= f.collection_select :song_ids, Song.all, :id, :title, {include_blank: 'None'} %><p>
+    <%= f.collection_check_boxes :song_ids, Song.all.alphabetized, :id, :title, {include_blank: 'None'} %><p>
+    <%= hidden_field_tag "playlist[song_ids][]", @playlist.song_ids %>
     <h4>Add new songs: </h4>
     <%= f.fields_for :songs do |song| %>
         <%= song.label :title %>

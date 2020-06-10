@@ -5,6 +5,12 @@
     <%= f.text_field :name %><br><br>
     <%= f.label :description %>
     <%= f.text_area :description %><p>
+    <h4>Select or create a category: </h4>
+    <%= f.collection_select :category_ids, Category.all.last(5), :id, :name %><p>
+    <%= f.fields_for :categories do |category| %>
+        <%= category.label :name %>
+        <%= category.text_field :name %>
+    <% end %>
 
     <h2>Add songs to your new playlist </h2>
     <h4>Select from existing songs: </h4>

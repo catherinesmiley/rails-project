@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
     def show 
         @user = User.find_by(id: params[:id])
-        if !@user || @user.id != session[:user_id]
+        if !@user || @user.id
             redirect_to root_path
         end 
     end 

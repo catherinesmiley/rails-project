@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     end 
 
     def index 
-        @songs = Song.all
+        @users = User.all
     end 
 
     private 

@@ -3,6 +3,10 @@
 <%= form_for @song do |f| %>
     <%= hidden_field_tag "song[playlist_ids][]", @song.playlists.last.id %>
     <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title %><p>
+    <%= f.label :artist %>
+    <%= f.text_field :artist %><p>
+    <%= f.label :genre %>
+    <%= f.text_field :genre %><p>
     <%= f.submit "Add song" %>
 <% end %>

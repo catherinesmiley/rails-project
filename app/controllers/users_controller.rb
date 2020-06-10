@@ -27,6 +27,10 @@ class UsersController < ApplicationController
         end 
     end 
 
+    def index 
+        @songs = Song.all
+    end 
+
     private 
 
     def user_params

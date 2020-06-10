@@ -1,10 +1,13 @@
 <h1><%= @playlist.name %></h1>
 <h4><%= @playlist.description %></h4>
-<h5><%= pluralize(@playlist.categories.count, 'Category:') %></h5>
-<% @playlist.categories.each do |category| %>
-    <%= category.name %>
-<% end %>
-
+<h4><%= pluralize(@playlist.categories.count, 'Category:') %></h4><p>
+<ul>
+    <% @playlist.categories.each do |category| %>
+        <li><%= category.name %></li>
+    <% end %>
+</ul>
+<p>
+<h4>Songs: </h4>
 <ul>
     <% @playlist.songs.each do |song| %>
         <li>

@@ -10,8 +10,12 @@ class SongsController < ApplicationController
 
     def new 
         @song = Song.new 
-        playlist = Playlist.find_by(id: params[:playlist_id])
-        @song.playlists << playlist
+        if params[:playlist_id]
+            playlist = Playlist.find_by(id: params[:playlist_id])
+            @song.playlists << playlist
+        else 
+            render :new
+        end 
         # method to call @playlist.id
         # either don't allow non-nested route for songs new or add validation here
     end 

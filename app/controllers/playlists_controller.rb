@@ -8,9 +8,9 @@ class PlaylistsController < ApplicationController
     end
 
     def create 
+        byebug
         @playlist = Playlist.new(playlist_params)
         @playlist.user_id = current_user.id
-        # byebug
         if @playlist.save 
             redirect_to playlist_path(@playlist)
         else 
@@ -32,7 +32,7 @@ class PlaylistsController < ApplicationController
     private 
 
     def playlist_params 
-        params.require(:playlist).permit(:name, :description, song_ids:[], songs_attributes: [:title, :artist, :genre], :categories)
+        params.require(:playlist).permit(:name, :description, :categories, category_ids:[], song_ids:[], songs_attributes: [:title, :artist, :genre])
     end 
 
 end

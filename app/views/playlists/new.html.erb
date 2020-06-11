@@ -8,7 +8,7 @@
     
     <h4>Select a category: </h4>
     <%= f.collection_check_boxes :category_ids, Category.all.last(5), :id, :name %><p>
-    <%= hidden_field_tag "playlist[category_ids][]", @playlist.categories %>
+    <%= hidden_field_tag "playlist[category_ids][]", @playlist.categories.ids %>
 
     <h2>Add songs to your new playlist </h2>
     <h4>Select from existing songs: </h4>

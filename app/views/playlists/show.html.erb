@@ -1,6 +1,6 @@
 <h1><%= @playlist.name %></h1>
 <h4><%= @playlist.description %></h4>
-<h4><%= pluralize(@playlist.categories.count, 'Category:') %></h4><p>
+<h4><%= pluralize(@playlist.categories.count, 'Category') %></h4><p>
 <ul>
     <% @playlist.categories.each do |category| %>
         <li><%= category.name %></li>

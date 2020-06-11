@@ -10,7 +10,7 @@ class Playlist < ApplicationRecord
 
     def songs_attributes=(song_attributes)
         song_attributes.values.each do |song_attribute| 
-            if song_attribute[:title].present? 
+            if song_attribute[:title].present?
                 song = Song.find_or_create_by(song_attribute)
                 if song.save
                     self.songs << song

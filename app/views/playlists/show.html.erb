@@ -7,7 +7,7 @@
     <% end %>
 </ul>
 <p>
-<h4>Songs: </h4>
+<h4><%= pluralize(@playlist.songs.count, 'Songs') %></h4>
 <ul>
     <% @playlist.songs.each do |song| %>
         <li>

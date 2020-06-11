@@ -7,14 +7,12 @@
     <%= f.text_area :description %><p>
     
     <h4>Select a category: </h4>
-    <%= f.collection_check_boxes :category_ids, Category.all.last(5), :id, :name %><p>
-    <%= hidden_field_tag "playlist[category_ids][]", @playlist.categories.ids %>
+    <%= f.collection_check_boxes :category_ids, Category.select {|c| c.name != nil }, :id, :name %><p>
 
     <h2>Add songs to your new playlist </h2>
     <h4>Select from existing songs: </h4>
 
     <%= f.collection_check_boxes :song_ids, Song.all.alphabetized, :id, :title, {include_blank: 'None'} %><p>
-    <%= hidden_field_tag "playlist[song_ids][]", @playlist.song_ids %>
     <h4>Add new songs: </h4>
     <%= f.fields_for :songs do |song| %>
         <%= song.label :title %>

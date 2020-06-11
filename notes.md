@@ -1,4 +1,3 @@
-    # <%= f.fields_for :songs do |song| %>
-    #     <%= song.label :title %>
-    #     <%= song.title :title %><br>
-    # <% end %>
+<%= hidden_field_tag "playlist[category_ids][]", @playlist.categories.ids %>
+
+    <%= hidden_field_tag "playlist[song_ids][]", @playlist.song_ids %>

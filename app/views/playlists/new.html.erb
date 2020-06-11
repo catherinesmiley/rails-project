@@ -5,9 +5,6 @@
     <%= f.text_field :name %><br><br>
     <%= f.label :description %>
     <%= f.text_area :description %><p>
-    
-    <h4>Select a category: </h4>
-    <%= f.collection_check_boxes :category_ids, Category.select {|c| c.name != nil }, :id, :name %><p>
 
     <h2>Add songs to your new playlist </h2>
     <h4>Select from existing songs: </h4>
@@ -21,6 +18,8 @@
         <%= song.text_field :artist %>
         <%= song.label :genre %>
         <%= song.text_field :genre %><p>
+        <%= song.label :category_name %>
+        <%= song.text_field :category_name %><p>
     <% end %>
 
     <%= f.submit "Create playlist" %>

@@ -3,6 +3,8 @@ class Playlist < ApplicationRecord
     has_many :categories
     has_many :songs, through: :categories
 
+    validates :name, presence: true 
+
     # accepts_nested_attributes_for :songs
     # create custom songs_attributes=
     # if song does not save, do nothing
@@ -18,7 +20,5 @@ class Playlist < ApplicationRecord
             end 
         end 
     end 
-
-    validates :name, presence: true 
 
 end

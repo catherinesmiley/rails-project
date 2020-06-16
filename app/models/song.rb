@@ -31,7 +31,8 @@ class Song < ApplicationRecord
     end 
 
     def category_name=(name)
-        self.categories = Category.find_or_create_by(name: name)
+        new_category = Category.find_or_create_by(name: name)
+        self.categories << new_category
     end 
 
     def category_name

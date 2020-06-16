@@ -2,6 +2,9 @@ class SongsController < ApplicationController
 
     def show 
         @song = Song.find_by(id: params[:id])
+        if params[:playlist_id]
+            playlist = Playlist.find_by(id: params[:playlist_id])
+        end
     end 
 
     def index 
@@ -20,6 +23,7 @@ class SongsController < ApplicationController
     end 
 
     def create
+        byebug
         @song = Song.new(song_params)
         if @song.save 
             redirect_to song_path(@song)

@@ -15,9 +15,7 @@
 <%= form_for @song do |f| %>
     <% if @playlist %>
         <%= hidden_field_tag "song[playlist_ids][]", @playlist.id %>
-    <% else %>
-        <h3>Add this song to one or more of your playlists: </h3>
-        <%= f.collection_check_boxes :playlist_ids, Playlist.all, :id, :name %><p>
+
     <% end %>
     <%= f.label :title %>
     <%= f.text_field :title %><p>
@@ -26,10 +24,12 @@
     <%= f.label :genre %>
     <%= f.text_field :genre %><p>
 
+    <% if @playlist %>
     <%= f.fields_for :categories do |category| %>
         <%= hidden_field_tag "song[categories_attributes][0][playlist_id]", @playlist.id %>
     <%= category.label :category %>
     <%= category.text_field :name %><p>
+    <% end %>
     <% end %>
 
     <%= f.submit "Add song" %>

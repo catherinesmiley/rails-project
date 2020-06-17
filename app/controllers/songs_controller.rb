@@ -17,6 +17,8 @@ class SongsController < ApplicationController
         if params[:playlist_id]
             @playlist = Playlist.find_by(id: params[:playlist_id])
         else 
+            # @playlist = Playlist.new
+            # @playlist.categories.build
             render :new
         end 
         # method to call @playlist.id

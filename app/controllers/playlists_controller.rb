@@ -9,7 +9,6 @@ class PlaylistsController < ApplicationController
     end
 
     def create 
-        byebug
         @playlist = Playlist.new(playlist_params)
         @playlist.user_id = current_user.id
         @playlist.songs.last.categories.last.playlist = @playlist

@@ -11,7 +11,7 @@ class PlaylistsController < ApplicationController
     def create 
         @playlist = Playlist.new(playlist_params)
         @playlist.user_id = current_user.id
-        @playlist.songs.last.categories.last.playlist = @playlist
+        # @playlist.songs.last.categories.last.playlist = @playlist
         if @playlist.save 
             redirect_to playlist_path(@playlist)
         else 

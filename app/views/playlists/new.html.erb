@@ -18,9 +18,11 @@
     <%= f.label :description %>
     <%= f.text_area :description %><p>
 
+    <% if false %>
     <h2>Add songs to your new playlist </h2>
     <h4>Select from existing songs: </h4>
 
+ 
     <%= f.collection_check_boxes :song_ids, Song.all.alphabetized, :id, :title do |b| %><p>
         <%= b.label(class: "check_box") do %>
             <%= b.check_box(class: "check_box") %>
@@ -29,6 +31,7 @@
             <%= hidden_field_tag "playlist[categories_attributes][][song_id]", b.object.id %>
         <% end %>
     <% end %>
+
     <h4>Add new songs: </h4>
     <%= f.fields_for :songs do |song| %>
         <%= song.label :title %>
@@ -41,6 +44,8 @@
         <%= category.label :category %>
         <%= category.text_field :name %><p>
         <% end %>
+
+    <% end %>
     <% end %>
 
     <%= f.submit "Create playlist" %>

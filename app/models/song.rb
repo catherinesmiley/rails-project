@@ -16,13 +16,13 @@ class Song < ApplicationRecord
     #     end 
     # end 
 
-    # def category_name=(name)
-    #     new_category = Category.create(name: name, song: self)
-    #     # self.categories << new_category
-    #     self.save
-    # end 
+    def category_name=(name)
+        new_category = Category.create(name: name, song: self)
+        # self.categories << new_category
+        self.save
+    end 
 
-    # def category_name
-    #     # self.categories ? self.categories.name : nil
-    # end 
+    def category_name
+        # self.categories ? self.categories.name : nil
+    end 
 end

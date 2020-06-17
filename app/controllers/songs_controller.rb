@@ -17,8 +17,6 @@ class SongsController < ApplicationController
         if params[:playlist_id]
             @playlist = Playlist.find_by(id: params[:playlist_id])
         else 
-            # @playlist = Playlist.new
-            # @playlist.categories.build
             render :new
         end 
         # method to call @playlist.id
@@ -26,7 +24,6 @@ class SongsController < ApplicationController
 
     def create
         @song = Song.new(song_params)
-        # @song.categories.last.playlist_id = params[:song][:playlist_ids][0]
         if @song.save 
             redirect_to song_path(@song)
         else

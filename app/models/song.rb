@@ -6,36 +6,23 @@ class Song < ApplicationRecord
 
     scope :alphabetized, -> { order(title: :asc) }
 
-    # def category_names=(names)
-    #     # self.categories = Category.find_or_create_by(name: name)
-    #     Category.all.each do |category|
-    #         if names.include?(category)
-    #             self.categories << category 
-    #         end 
+    accepts_nested_attributes_for :categories
+
+    # def categories_attributes=(category_attributes)
+    #     category = Category.create(category_attributes["0"])
+    #     if category.name
+    #         category.song = self 
+    #         category.save
     #     end 
     # end 
 
-    # def category_names
-    #     self.categories ? self.categories.names : nil 
+    # def category_name=(name)
+    #     new_category = Category.create(name: name, song: self)
+    #     # self.categories << new_category
+    #     self.save
     # end 
 
-    def categories_attributes=(category_attributes)
-        category_attributes.values.each do |category_attribute| 
-            if category_attribute[:name].present?
-                category = Category.find_or_create_by(category_attribute)
-                if category.save
-                    self.categories << category
-                end 
-            end 
-        end 
-    end 
-
-    def category_name=(name)
-        new_category = Category.find_or_create_by(name: name)
-        self.categories << new_category
-    end 
-
-    def category_name
-        self.categories ? self.categories.name : nil
-    end 
+    # def category_name
+    #     # self.categories ? self.categories.name : nil
+    # end 
 end

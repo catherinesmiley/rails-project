@@ -13,9 +13,9 @@ class SongsController < ApplicationController
 
     def new 
         @song = Song.new 
+        @song.categories.build
         if params[:playlist_id]
-            playlist = Playlist.find_by(id: params[:playlist_id])
-            @song.playlists << playlist
+            @playlist = Playlist.find_by(id: params[:playlist_id])
         else 
             render :new
         end 
@@ -24,6 +24,7 @@ class SongsController < ApplicationController
 
     def create
         @song = Song.new(song_params)
+        # @song.categories.last.playlist_id = params[:song][:playlist_ids][0]
         if @song.save 
             redirect_to song_path(@song)
         else
@@ -34,7 +35,7 @@ class SongsController < ApplicationController
     private 
 
     def song_params
-        params.require(:song).permit(:title, :artist, :genre, :category_name, playlist_ids:[], categories_attributes: [:name])
+        params.require(:song).permit(:title, :artist, :genre, :category_name, categories_attributes: [:name, :playlist_id])
     end 
 
 end

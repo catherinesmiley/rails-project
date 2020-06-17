@@ -1,6 +1,8 @@
 <h2><%= @song.title %> by <%= @song.artist %><p>
 
+<% if @song.playlists.length > 0 %>
 <h4>Appears on these playlists: </h4>
 <% @song.playlists.each do |playlist| %>
     <li><%= link_to playlist.name, playlist_path(playlist) %></li>
+<% end %>
 <% end %>

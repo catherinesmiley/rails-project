@@ -48,6 +48,16 @@ class SongsController < ApplicationController
         end 
     end 
 
+    def update 
+        @song = Song.find(params[:id])
+        @song.update(song_params)
+        if @song.save
+            redirect_to song_path(@song)
+        else 
+            render :edit
+        end 
+    end 
+
     private 
 
     def song_params

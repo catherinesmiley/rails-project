@@ -1,5 +1,8 @@
 class SongsController < ApplicationController
 
+    before_action :logged_in?, only: [:edit]
+    before_action :redirect_if_not_current_user, only: [:edit]
+
     def show 
         @song = Song.find_by(id: params[:id])
         if params[:playlist_id]
@@ -34,14 +37,14 @@ class SongsController < ApplicationController
     def edit 
         if params[:playlist_id]
             playlist = Playlist.find_by(id: params[:playlist_id])
-            if playlist.nil? 
+            if playlist.nil? || !current_user
                 redirect_to playlists_path 
             else 
                 @song = playlist.songs.find_by(id: params[:id])
-                redirect_to playlist_songs_path(playlist) if @song.nil?
+                redirect_to playlist_songs_path(playlist) if @song.nil? || !current_user
             end
         else 
-            @song = Song.find(params[:id])
+            @song = Song.find(params[:id]) unless !current_user
         end 
     end 
 

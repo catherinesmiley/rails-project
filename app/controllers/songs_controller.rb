@@ -31,6 +31,20 @@ class SongsController < ApplicationController
         end 
     end 
 
+    def edit 
+        if params[:playlist_id]
+            playlist = Playlist.find_by(id: params[:playlist_id])
+            if playlist.nil? 
+                redirect_to playlists_path 
+            else 
+                @song = playlist.songs.find_by(id: params[:id])
+                redirect_to playlist_songs_path(playlist) if @song.nil?
+            end
+        else 
+            @song = Song.find(params[:id])
+        end 
+    end 
+
     private 
 
     def song_params

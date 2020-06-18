@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   post '/logout' => 'sessions#destroy'
   get '/auth/facebook/callback' => 'sessions#fb_create'
-  resources :categories
   resources :songs
   resources :playlists do 
     resources :songs

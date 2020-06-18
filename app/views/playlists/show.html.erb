@@ -1,12 +1,16 @@
 <h1><%= @playlist.name %></h1>
 <h4><%= @playlist.description %></h4>
+
+<% if @playlist.categories.length > 0 %>
 <h4><%= pluralize(@playlist.categories.count, 'Category') %></h4><p>
 <ul>
     <% @playlist.categories.each do |category| %>
         <li><%= category.name %></li>
     <% end %>
 </ul>
+<% end %>
 <p>
+<% if @playlist.songs.length > 0 %>
 <h4><%= pluralize(@playlist.songs.count, 'Songs') %></h4>
 <ul>
     <% @playlist.songs.each do |song| %>
@@ -17,5 +21,8 @@
         </li>
     <% end %>
 </ul>
+<% else %>
+    <h4>No songs have been added to this playlist yet!</h4>
+<% end %>
 
 <h4><%= link_to "Add a song to this playlist!", new_playlist_song_path(@playlist) %></h4>

@@ -22,6 +22,7 @@ class PlaylistsController < ApplicationController
     def show 
         @playlist = Playlist.find_by(id: params[:id])
         if !@playlist 
+            flash[:alert] = "This playlist does not exist!"
             redirect_to playlists_path
         end 
     end 

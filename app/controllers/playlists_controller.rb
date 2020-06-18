@@ -11,10 +11,14 @@ class PlaylistsController < ApplicationController
     def create 
         @playlist = Playlist.new(playlist_params)
         @playlist.user_id = current_user.id
-        # @playlist.songs.last.categories.last.playlist = @playlist
         if @playlist.save 
-            redirect_to playlist_path(@playlist)
+            if @playlist.categories.length > 0 && !@playlist.categories.last.song
+                @playlist.categories.last.song 
+            end 
+                redirect_to playlist_path(@playlist)
         else 
+            @songs = Song.all
+            @playlist.songs.build
             render :new 
         end 
     end 

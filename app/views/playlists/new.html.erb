@@ -1,14 +1,4 @@
-<% if @playlist.errors.any? %>
-    <div id="field_with_errors">
-        <h2><%= pluralize(@playlist.errors.count, "error") %> prohibited this playlist from being created:</h2>
-
-        <ul>
-            <% @playlist.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-        </ul>
-    </div>
-<% end %>
+<%= render partial: '/application/errors_messages', locals: {object: @playlist} %>
 
 <h1>Create a new playlist</h1>
 

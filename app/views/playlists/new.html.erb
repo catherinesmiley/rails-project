@@ -8,27 +8,5 @@
     <%= f.label :description %>
     <%= f.text_area :description %><p>
 
-    <h2>Add songs to your new playlist </h2>
-    <h4>Select from existing songs: </h4>
- 
-    <% @songs.each_with_index do |s, i| %>
-        <%= label_tag s.title%>
-        <%= check_box_tag "playlist[categories_attributes][#{i}][song_id]", s.id %>
-        <%= text_field_tag "playlist[categories_attributes][#{i}][name]" %><br/>
-      <% end %>
-
-    <h4>Add new songs: </h4>
-    <%= f.fields_for :songs do |song| %>
-        <%= song.label :title %>
-        <%= song.text_field :title %>
-        <%= song.label :artist %>
-        <%= song.text_field :artist %>
-        <%= song.label :genre %>
-        <%= song.text_field :genre %><p>
-    <% end %>
-
-    <%= f.label :category %>
-    <%= text_field_tag "playlist[categories_attributes][#{Song.all.length+1}][name]" %><br/>
-
     <%= f.submit "Create playlist" %>
 <% end %>

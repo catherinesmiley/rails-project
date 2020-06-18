@@ -1,6 +1,6 @@
 <% if object.errors.any? %>
     <div id="field_with_errors">
-        <h2>Please correct <%= pluralize(object.errors.count, "error") %></h2>
+        <h3>Please correct <%= pluralize(object.errors.count, "error") %></h3>
 
         <ul>
             <% object.errors.full_messages.each do |msg| %>

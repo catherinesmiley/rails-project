@@ -8,19 +8,14 @@
     <%= f.label :description %>
     <%= f.text_area :description %><p>
 
-    <% if false %>
     <h2>Add songs to your new playlist </h2>
     <h4>Select from existing songs: </h4>
-
  
-    <%= f.collection_check_boxes :song_ids, Song.all.alphabetized, :id, :title do |b| %><p>
-        <%= b.label(class: "check_box") do %>
-            <%= b.check_box(class: "check_box") %>
-            <%= b.object.title %>
-            <input type="text" name="playlist[categories_attributes][][name]">
-            <%= hidden_field_tag "playlist[categories_attributes][][song_id]", b.object.id %>
-        <% end %>
-    <% end %>
+    <% @songs.each_with_index do |s, i| %>
+        <%= label_tag s.title%>
+        <%= check_box_tag "playlist[categories_attributes][#{i}][song_id]", s.id %>
+        <%= text_field_tag "playlist[categories_attributes][#{i}][name]" %><br/>
+      <% end %>
 
     <h4>Add new songs: </h4>
     <%= f.fields_for :songs do |song| %>
@@ -30,13 +25,10 @@
         <%= song.text_field :artist %>
         <%= song.label :genre %>
         <%= song.text_field :genre %><p>
-        <%= song.fields_for :categories do |category| %>
-        <%= category.label :category %>
-        <%= category.text_field :name %><p>
-        <% end %>
+    <% end %>
 
-    <% end %>
-    <% end %>
+    <%= f.label :category %>
+    <%= text_field_tag "playlist[categories_attributes][#{Song.all.length+1}][name]" %><br/>
 
     <%= f.submit "Create playlist" %>
 <% end %>

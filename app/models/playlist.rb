@@ -17,7 +17,7 @@ class Playlist < ApplicationRecord
     def songs_attributes=(song_attributes)
         song_attributes.values.each do |song_attribute| 
             if song_attribute[:title].present?
-                song = Song.find_or_create_by(title: song_attribute[:title]) || Song.create(song_attribute)
+                Song.find_by(title: song_attribute[:title]) || Song.create(song_attribute)
             end 
         end 
     end 

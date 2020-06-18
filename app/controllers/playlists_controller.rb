@@ -6,6 +6,7 @@ class PlaylistsController < ApplicationController
         @playlist = Playlist.new
         @playlist.songs.build
         @playlist.songs.first.categories.build
+        @songs = Song.all
     end
 
     def create 
@@ -13,7 +14,7 @@ class PlaylistsController < ApplicationController
         @playlist.user_id = current_user.id
         if @playlist.save 
             if @playlist.categories.length > 0 && !@playlist.categories.last.song
-                @playlist.categories.last.song 
+                @playlist.categories.last.song = Song.last
             end 
                 redirect_to playlist_path(@playlist)
         else 
@@ -38,7 +39,7 @@ class PlaylistsController < ApplicationController
     private 
 
     def playlist_params 
-        params.require(:playlist).permit(:name, :description, categories_attributes:[:name, :song_id], songs_attributes: [:title, :artist, :genre])
+        params.require(:playlist).permit(:name, :description,categories_attributes:[:name, :song_id], songs_attributes: [:title, :artist, :genre])
     end 
 
 end

@@ -26,3 +26,7 @@
 <% end %>
 
 <h4><%= link_to "Add a song to this playlist!", new_playlist_song_path(@playlist) %></h4>
+<% if current_user %>
+    <%= link_to "Edit Playlist", edit_playlist_path(@playlist) %>
+    <%= button_to "Delete Playlist", playlist_path(@playlist), method: :delete %>
+<% end %>

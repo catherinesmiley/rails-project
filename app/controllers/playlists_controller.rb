@@ -30,6 +30,11 @@ class PlaylistsController < ApplicationController
         @playlists = Playlist.all 
     end 
 
+    def edit 
+        @playlist = Playlist.find_by(id: params[:id])
+        redirect_to playlist_path(@playlist) if @playlist.nil? || @playlist.user != current_user
+    end 
+
     private 
 
     def playlist_params 

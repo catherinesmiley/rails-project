@@ -35,6 +35,16 @@ class PlaylistsController < ApplicationController
         redirect_to playlist_path(@playlist) if @playlist.nil? || @playlist.user != current_user
     end 
 
+    def update 
+        @playlist = Playlist.find(params[:id])
+        @playlist.update(playlist_params)
+        if @playlist.save
+            redirect_to playlist_path(@playlist)
+        else 
+            render :edit
+        end 
+    end 
+
     private 
 
     def playlist_params 

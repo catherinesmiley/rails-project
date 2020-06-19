@@ -7,8 +7,6 @@
     <%= f.text_field :title %><p>
     <%= f.label :artist %>
     <%= f.text_field :artist %><p>
-    <%= f.label :genre %>
-    <%= f.text_field :genre %><p>
 
     <% if @playlist %>
         <%= f.fields_for :categories do |category| %>

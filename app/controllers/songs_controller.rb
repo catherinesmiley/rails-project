@@ -1,7 +1,7 @@
 class SongsController < ApplicationController
 
-    before_action :logged_in?, only: [:edit]
-    before_action :redirect_if_not_current_user, only: [:edit]
+    before_action :logged_in?, only: [:edit, :destroy]
+    before_action :redirect_if_not_current_user, only: [:edit, :destroy]
 
     def show 
         @song = Song.find_by(id: params[:id])
@@ -37,11 +37,11 @@ class SongsController < ApplicationController
     def edit 
         if params[:playlist_id]
             playlist = Playlist.find_by(id: params[:playlist_id])
-            if playlist.nil? || !current_user
+            if playlist.nil? || playlist.user != current_user
                 redirect_to playlists_path 
             else 
                 @song = playlist.songs.find_by(id: params[:id])
-                redirect_to playlist_songs_path(playlist) if @song.nil? || !current_user
+                redirect_to playlist_songs_path(playlist) if @song.nil? || playlist.user != current_user
             end
         else 
             @song = Song.find(params[:id]) unless !current_user
@@ -56,6 +56,13 @@ class SongsController < ApplicationController
         else 
             render :edit
         end 
+    end 
+
+    def destroy 
+        @song = Song.find(params[:id])
+        @song.destroy
+        flash[:notice] = "Song deleted."
+        redirect_to songs_path
     end 
 
     private 

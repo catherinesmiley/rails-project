@@ -32,7 +32,10 @@ class PlaylistsController < ApplicationController
 
     def edit 
         @playlist = Playlist.find_by(id: params[:id])
-        redirect_to playlist_path(@playlist) if @playlist.nil? || @playlist.user != current_user
+        if @playlist.nil? || @playlist.user != current_user
+            flash[:alert] = "You can't edit another user's playlist!"
+            redirect_to playlist_path(@playlist)
+        end 
     end 
 
     def update 
@@ -52,7 +55,7 @@ class PlaylistsController < ApplicationController
             flash[:notice] = "Playlist deleted."
             redirect_to playlists_path
         else 
-            flash[:notice] = "You can't delete another user's playlist!"
+            flash[:alert] = "You can't delete another user's playlist!"
             redirect_to playlist_path(@playlist)
         end 
     end 

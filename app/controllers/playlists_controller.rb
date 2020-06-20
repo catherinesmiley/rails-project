@@ -47,9 +47,14 @@ class PlaylistsController < ApplicationController
 
     def destroy 
         @playlist = Playlist.find(params[:id])
-        @playlist.destroy
-        flash[:notice] = "Playlist deleted."
-        redirect_to playlists_path
+        if @playlist && @playlist.user == current_user
+            @playlist.destroy
+            flash[:notice] = "Playlist deleted."
+            redirect_to playlists_path
+        else 
+            flash[:notice] = "You can't delete another user's playlist!"
+            redirect_to playlist_path(@playlist)
+        end 
     end 
 
     private 

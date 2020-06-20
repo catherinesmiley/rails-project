@@ -1,7 +1,6 @@
 class SongsController < ApplicationController
 
     before_action :logged_in?, only: [:edit, :destroy]
-    before_action :redirect_if_not_current_user, only: [:edit, :destroy]
 
     def show 
         @song = Song.find_by(id: params[:id])

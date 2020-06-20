@@ -1,6 +1,6 @@
 class SongsController < ApplicationController
 
-    before_action :logged_in?, only: [:edit, :destroy]
+    before_action :logged_in?, only: [:new, :edit, :destroy]
 
     def show 
         @song = Song.find_by(id: params[:id])
@@ -43,7 +43,11 @@ class SongsController < ApplicationController
                 redirect_to playlist_songs_path(playlist) if @song.nil? || playlist.user != current_user
             end
         else 
-            @song = Song.find(params[:id]) unless !current_user
+            @song = Song.find_by(id: params[:id]) 
+            if !@song
+                flash[:alert] = "This song does not exist!"
+                redirect_to songs_path
+            end 
         end 
     end 
 

@@ -1,6 +1,6 @@
 class PlaylistsController < ApplicationController
 
-    before_action :logged_in?
+    before_action :logged_in?, :set_playlist, only: [:show, :edit, :update, :destroy]
 
     def new 
         @playlist = Playlist.new
@@ -19,7 +19,6 @@ class PlaylistsController < ApplicationController
     end 
 
     def show 
-        @playlist = Playlist.find_by(id: params[:id])
         if !@playlist 
             flash[:alert] = "This playlist does not exist!"
             redirect_to playlists_path
@@ -31,7 +30,6 @@ class PlaylistsController < ApplicationController
     end 
 
     def edit 
-        @playlist = Playlist.find_by(id: params[:id])
         if @playlist.nil? || @playlist.user != current_user
             flash[:alert] = "You can't edit another user's playlist!"
             redirect_to playlist_path(@playlist)
@@ -39,7 +37,6 @@ class PlaylistsController < ApplicationController
     end 
 
     def update 
-        @playlist = Playlist.find(params[:id])
         @playlist.update(playlist_params)
         if @playlist.save
             redirect_to playlist_path(@playlist)
@@ -49,7 +46,6 @@ class PlaylistsController < ApplicationController
     end 
 
     def destroy 
-        @playlist = Playlist.find(params[:id])
         if @playlist && @playlist.user == current_user
             @playlist.destroy
             flash[:notice] = "Playlist deleted."
@@ -58,6 +54,10 @@ class PlaylistsController < ApplicationController
             flash[:alert] = "You can't delete another user's playlist!"
             redirect_to playlist_path(@playlist)
         end 
+    end 
+
+    def set_playlist
+        @playlist = Playlist.find_by(id: params[:id])
     end 
 
     private 

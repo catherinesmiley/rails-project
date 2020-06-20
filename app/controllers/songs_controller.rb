@@ -4,6 +4,10 @@ class SongsController < ApplicationController
 
     def show 
         @song = Song.find_by(id: params[:id])
+        if !@song 
+            flash[:alert] = "That song does not exist!"
+            redirect_to songs_path
+        end 
         if params[:playlist_id]
             playlist = Playlist.find_by(id: params[:playlist_id])
         end
@@ -21,7 +25,6 @@ class SongsController < ApplicationController
         else 
             render :new
         end 
-        # method to call @playlist.id
     end 
 
     def create
@@ -40,7 +43,7 @@ class SongsController < ApplicationController
                 redirect_to playlists_path 
             else 
                 @song = playlist.songs.find_by(id: params[:id])
-                redirect_to playlist_songs_path(playlist) if @song.nil? || playlist.user != current_user
+                redirect_to playlist_songs_path(playlist) if @song.nil?
             end
         else 
             @song = Song.find_by(id: params[:id]) 

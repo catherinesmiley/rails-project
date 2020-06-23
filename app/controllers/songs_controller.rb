@@ -4,7 +4,6 @@ class SongsController < ApplicationController
     before_action :find_playlist, only: [:show, :new]
 
     def show 
-        # find_playlist
         @song = Song.find_by(id: params[:id])
         if !@song 
             flash[:alert] = "That song does not exist!"
@@ -17,7 +16,6 @@ class SongsController < ApplicationController
     end 
 
     def new 
-        # find_playlist
         @song = Song.new 
         @song.categories.build
         render :new
@@ -76,7 +74,7 @@ class SongsController < ApplicationController
     end 
 
     def song_params
-        params.require(:song).permit(:title, :artist, :genre, :category_name, categories_attributes: [:name, :playlist_id])
+        params.require(:song).permit(:title, :artist, :genre, categories_attributes: [:name, :playlist_id])
     end 
 
 end

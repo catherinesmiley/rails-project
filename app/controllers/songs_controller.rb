@@ -3,14 +3,12 @@ class SongsController < ApplicationController
     before_action :logged_in?, only: [:new, :edit, :destroy]
 
     def show 
+        find_playlist
         @song = Song.find_by(id: params[:id])
         if !@song 
             flash[:alert] = "That song does not exist!"
             redirect_to songs_path
         end 
-        if params[:playlist_id]
-            playlist = Playlist.find_by(id: params[:playlist_id])
-        end
     end 
 
     def index 
@@ -20,11 +18,8 @@ class SongsController < ApplicationController
     def new 
         @song = Song.new 
         @song.categories.build
-        if params[:playlist_id]
-            @playlist = Playlist.find_by(id: params[:playlist_id])
-        else 
-            render :new
-        end 
+        find_playlist
+        render :new
     end 
 
     def create
@@ -37,21 +32,23 @@ class SongsController < ApplicationController
     end 
 
     def edit 
-        if params[:playlist_id]
-            playlist = Playlist.find_by(id: params[:playlist_id])
-            if playlist.nil? || playlist.user != current_user
+        # if params[:playlist_id]
+        #     @playlist = Playlist.find_by(id: params[:playlist_id])
+        find_playlist
+            if @playlist.nil? || @playlist.user != current_user
                 redirect_to playlists_path 
             else 
                 @song = playlist.songs.find_by(id: params[:id])
                 redirect_to playlist_songs_path(playlist) if @song.nil?
             end
-        else 
+        # else 
+
             @song = Song.find_by(id: params[:id]) 
             if !@song
                 flash[:alert] = "This song does not exist!"
                 redirect_to songs_path
             end 
-        end 
+        # end 
     end 
 
     def update 
@@ -72,6 +69,12 @@ class SongsController < ApplicationController
     end 
 
     private 
+
+    def find_playlist 
+        if params[:playlist_id]
+            @playlist = Playlist.find_by(id: params[:playlist_id])
+        end 
+    end 
 
     def song_params
         params.require(:song).permit(:title, :artist, :genre, :category_name, categories_attributes: [:name, :playlist_id])

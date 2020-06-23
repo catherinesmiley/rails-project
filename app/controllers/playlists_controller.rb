@@ -5,7 +5,7 @@ class PlaylistsController < ApplicationController
     def new 
         @playlist = Playlist.new
         @playlist.songs.build
-        @playlist.songs.first.categories.build
+        # @playlist.songs.first.categories.build
     end
 
     def create 
@@ -56,11 +56,11 @@ class PlaylistsController < ApplicationController
         end 
     end 
 
+    private 
+
     def set_playlist
         @playlist = Playlist.find_by(id: params[:id])
     end 
-
-    private 
 
     def playlist_params 
         params.require(:playlist).permit(:name, :description, categories_attributes: [:name, :song_id], songs_attributes: [:title, :artist, :genre])

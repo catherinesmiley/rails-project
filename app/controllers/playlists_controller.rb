@@ -4,8 +4,6 @@ class PlaylistsController < ApplicationController
 
     def new 
         @playlist = Playlist.new
-        @playlist.songs.build
-        # @playlist.songs.first.categories.build
     end
 
     def create 

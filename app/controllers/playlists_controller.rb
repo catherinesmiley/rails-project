@@ -40,6 +40,7 @@ class PlaylistsController < ApplicationController
     def update 
         @playlist.update(playlist_params)
         if @playlist.save
+            flash[:notice] = "Playlist updated."
             redirect_to playlist_path(@playlist)
         else 
             render :edit

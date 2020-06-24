@@ -15,7 +15,7 @@
     <% @playlist.songs.each do |song| %>
         <li>
             Title: <%= link_to song.title, playlist_song_path(@playlist, song) %><br>
-            Artist: <%= song.artist %><br>
+            Artist: <%= song.artist %><br><p>
         </li>
     <% end %>
 </ul>

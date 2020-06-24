@@ -36,7 +36,7 @@ class SongsController < ApplicationController
             if @playlist.nil? || @playlist.user != current_user
                 redirect_to playlists_path 
             else 
-                @song = playlist.songs.find_by(id: params[:id])
+                @song = @playlist.songs.find_by(id: params[:id])
                 redirect_to playlist_songs_path(playlist) if @song.nil?
             end
         else 
@@ -75,7 +75,7 @@ class SongsController < ApplicationController
     end 
 
     def song_params
-        params.require(:song).permit(:title, :artist, :genre, categories_attributes: [:name, :playlist_id])
+        params.require(:song).permit(:title, :artist, :genre, categories_attributes: [:id, :name, :playlist_id])
     end 
 
 end

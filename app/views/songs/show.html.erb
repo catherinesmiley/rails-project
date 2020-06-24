@@ -8,6 +8,10 @@
 <% end %>
 
 <% if current_user %>
+    <% if @playlist %>
+    <%= link_to "Edit Song", edit_playlist_song_path(@playlist, @song) %>
+    <% else %>
     <%= link_to "Edit Song", edit_song_path(@song) %>
+    <% end %>
     <%= button_to "Delete Song", song_path(@song), method: :delete %>
 <% end %>

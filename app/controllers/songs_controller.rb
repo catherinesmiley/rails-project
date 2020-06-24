@@ -17,7 +17,7 @@ class SongsController < ApplicationController
 
     def new 
         @song = Song.new 
-        @song.categories.build
+        @song.categories.build if params[:playlist_id]
         render :new
     end 
 

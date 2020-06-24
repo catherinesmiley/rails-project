@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
         if !current_user
             @user = User.new 
         else 
+            flash[:notice] = "You're already logged in!"
             redirect_to root_path
         end 
     end 

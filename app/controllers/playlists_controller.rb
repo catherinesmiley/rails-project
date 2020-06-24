@@ -21,6 +21,9 @@ class PlaylistsController < ApplicationController
             flash[:alert] = "This playlist does not exist!"
             redirect_to playlists_path
         end 
+        if @playlist.categories.length == 0 || @playlist.songs.length == 0
+            flash[:alert] = "No songs have been added to this playlist yet!"
+        end 
     end 
 
     def index 

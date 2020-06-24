@@ -1,7 +1,7 @@
 <%= form_for song do |f| %>
-    <% if @playlist %>
-        <%= hidden_field_tag "song[playlist_ids][]", @playlist.id %>
-    <% end %>
+
+        <%= hidden_field_tag "song[playlist_ids][]", @playlist.id if @playlist %>
+
     
     <%= f.label :title %>
     <%= f.text_field :title %><p>

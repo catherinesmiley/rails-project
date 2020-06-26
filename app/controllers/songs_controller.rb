@@ -5,10 +5,7 @@ class SongsController < ApplicationController
 
     def show 
         @song = Song.find_by(id: params[:id])
-        if !@song 
-            flash[:alert] = "That song does not exist!"
-            redirect_to songs_path
-        end 
+        redirect_if_not_song
     end 
 
     def index 
@@ -37,14 +34,11 @@ class SongsController < ApplicationController
                 redirect_to playlists_path 
             else 
                 @song = @playlist.songs.find_by(id: params[:id])
-                redirect_to playlist_songs_path(playlist) if @song.nil?
+                redirect_to playlist_songs_path(@playlist) if @song.nil?
             end
         else 
             @song = Song.find_by(id: params[:id]) 
-            if !@song
-                flash[:alert] = "This song does not exist!"
-                redirect_to songs_path
-            end 
+            redirect_if_not_song
         end 
     end 
 
@@ -53,7 +47,12 @@ class SongsController < ApplicationController
         @song.update(song_params)
         if @song.save
             flash[:notice] = "Song updated."
-            redirect_to song_path(@song)
+            # if params[:playlist_id] 
+            #     @playlist = Playlist.find_by(id: params[:id])
+            #     redirect to playlist_songs_path(@playlist)
+            # else 
+                redirect_to song_path(@song) 
+            # end 
         else 
             render :edit
         end 
@@ -72,6 +71,13 @@ class SongsController < ApplicationController
     def find_playlist 
         if params[:playlist_id]
             @playlist = Playlist.find_by(id: params[:playlist_id])
+        end 
+    end 
+
+    def redirect_if_not_song
+        if !@song
+            flash[:alert] = "This song does not exist!"
+            redirect_to songs_path
         end 
     end 
 

@@ -17,10 +17,7 @@ class PlaylistsController < ApplicationController
     end 
 
     def show 
-        if !@playlist 
-            flash[:alert] = "This playlist does not exist!"
-            redirect_to playlists_path
-        end 
+        redirect_if_not_playlist
     end 
 
     def index 
@@ -28,7 +25,8 @@ class PlaylistsController < ApplicationController
     end 
 
     def edit 
-        if @playlist.nil? || @playlist.user != current_user
+        redirect_if_not_playlist
+        if @playlist && @playlist.user != current_user
             flash[:alert] = "You can't edit another user's playlist!"
             redirect_to playlist_path(@playlist)
         end 
@@ -59,6 +57,13 @@ class PlaylistsController < ApplicationController
 
     def set_playlist
         @playlist = Playlist.find_by(id: params[:id])
+    end 
+
+    def redirect_if_not_playlist
+        if !@playlist
+            flash[:alert] = "This playlist does not exist!"
+            redirect_to playlists_path
+        end 
     end 
 
     def playlist_params 

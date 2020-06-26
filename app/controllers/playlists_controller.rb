@@ -26,10 +26,7 @@ class PlaylistsController < ApplicationController
 
     def edit 
         redirect_if_not_playlist
-        if @playlist && @playlist.user != current_user
-            flash[:alert] = "You can't edit another user's playlist!"
-            redirect_to playlist_path(@playlist)
-        end 
+        redirect_if_not_owner
     end 
 
     def update 
@@ -43,14 +40,9 @@ class PlaylistsController < ApplicationController
     end 
 
     def destroy 
-        if @playlist && @playlist.user == current_user
-            @playlist.destroy
-            flash[:notice] = "Playlist deleted."
-            redirect_to playlists_path
-        else 
-            flash[:alert] = "You can't delete another user's playlist!"
-            redirect_to playlist_path(@playlist)
-        end 
+        @playlist.destroy
+        flash[:notice] = "Playlist deleted."
+        redirect_to playlists_path
     end 
 
     private 
@@ -63,6 +55,13 @@ class PlaylistsController < ApplicationController
         if !@playlist
             flash[:alert] = "This playlist does not exist!"
             redirect_to playlists_path
+        end 
+    end 
+
+    def redirect_if_not_owner
+        if @playlist.user != current_user
+            flash[:alert] = "This is not your playlist!"
+            redirect_to playlists_path 
         end 
     end 
 

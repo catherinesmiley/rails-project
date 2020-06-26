@@ -51,15 +51,8 @@ class PlaylistsController < ApplicationController
         @playlist = Playlist.find_by(id: params[:id])
     end 
 
-    def redirect_if_not_playlist
-        if !@playlist
-            flash[:alert] = "This playlist does not exist!"
-            redirect_to playlists_path
-        end 
-    end 
-
     def redirect_if_not_owner
-        if @playlist.user != current_user
+        if @playlist && @playlist.user != current_user
             flash[:alert] = "This is not your playlist!"
             redirect_to playlists_path 
         end 

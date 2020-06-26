@@ -30,7 +30,9 @@ class SongsController < ApplicationController
     def edit 
         if params[:playlist_id]
             @playlist = Playlist.find_by(id: params[:playlist_id])
-            if @playlist.nil? || @playlist.user != current_user
+            redirect_if_not_playlist
+            if @playlist && @playlist.user != current_user
+                flash[:alert] = "You can't edit a song on another user's playlist!"
                 redirect_to playlists_path 
             else 
                 @song = @playlist.songs.find_by(id: params[:id])

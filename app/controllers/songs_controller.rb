@@ -2,9 +2,9 @@ class SongsController < ApplicationController
 
     before_action :logged_in?, only: [:new, :edit, :destroy]
     before_action :find_playlist, only: [:show, :new]
+    before_action :find_song, only: [:show, :update, :destroy]
 
     def show 
-        @song = Song.find_by(id: params[:id])
         redirect_if_not_song
     end 
 
@@ -37,29 +37,22 @@ class SongsController < ApplicationController
                 redirect_to playlist_songs_path(@playlist) if @song.nil?
             end
         else 
-            @song = Song.find_by(id: params[:id]) 
+            find_song
             redirect_if_not_song
         end 
     end 
 
     def update 
-        @song = Song.find_by(id: params[:id])
         @song.update(song_params)
         if @song.save
             flash[:notice] = "Song updated."
-            # if params[:playlist_id] 
-            #     @playlist = Playlist.find_by(id: params[:id])
-            #     redirect to playlist_songs_path(@playlist)
-            # else 
-                redirect_to song_path(@song) 
-            # end 
+            redirect_to song_path(@song) 
         else 
             render :edit
         end 
     end 
 
     def destroy 
-        @song = Song.find_by(id: params[:id])
         @song.categories.each(&:destroy)
         @song.destroy
         flash[:notice] = "Song deleted."
@@ -72,6 +65,10 @@ class SongsController < ApplicationController
         if params[:playlist_id]
             @playlist = Playlist.find_by(id: params[:playlist_id])
         end 
+    end 
+
+    def find_song 
+        @song = Song.find_by(id: params[:id])
     end 
 
     def redirect_if_not_song

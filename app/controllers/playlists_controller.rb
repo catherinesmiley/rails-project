@@ -51,12 +51,12 @@ class PlaylistsController < ApplicationController
         @playlist = Playlist.find_by(id: params[:id])
     end 
 
-    def redirect_if_not_owner
-        if @playlist && @playlist.user != current_user
-            flash[:alert] = "This is not your playlist!"
-            redirect_to playlists_path 
-        end 
-    end 
+    # def redirect_if_not_owner
+    #     if @playlist && @playlist.user != current_user
+    #         flash[:alert] = "This is not your playlist!"
+    #         redirect_to playlists_path 
+    #     end 
+    # end 
 
     def playlist_params 
         params.require(:playlist).permit(:name, :description, categories_attributes: [:name, :song_id], songs_attributes: [:title, :artist, :genre])

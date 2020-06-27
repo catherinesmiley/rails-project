@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
 
+    require 'securerandom'
+
     def new 
         if !current_user
             @user = User.new 
@@ -22,7 +24,7 @@ class SessionsController < ApplicationController
     def fb_create
         @user = User.find_or_create_by(username: auth['info']['email'])
         if !@user.password 
-            @user.password = 'omniauth_password'
+            @user.password = SecureRandom.hex(10)
         end 
 
         @user.save

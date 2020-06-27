@@ -8,4 +8,8 @@ class Song < ApplicationRecord
 
     accepts_nested_attributes_for :categories
 
+    def self.search(input)
+        Song.where("title LIKE ?", "%#{input}%")
+    end
+
 end

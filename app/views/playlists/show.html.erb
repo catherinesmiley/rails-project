@@ -20,6 +20,7 @@
     <% end %>
 </ul>
 
+<%= @playlist.user.username %>
 
 <% if @playlist.user == current_user %>
     <%= link_to "Add a song to this playlist", new_playlist_song_path(@playlist) %> / <%= link_to "Edit playlist", edit_playlist_path(@playlist) %><p>

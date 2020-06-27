@@ -9,7 +9,11 @@ class SongsController < ApplicationController
     end 
 
     def index 
-        @songs = Song.all.alphabetized
+        if params[:search]
+            @songs = Song.search(params[:search])
+        else 
+            @songs = Song.all.alphabetized
+        end 
     end 
 
     def new 
@@ -75,7 +79,7 @@ class SongsController < ApplicationController
     end 
 
     def song_params
-        params.require(:song).permit(:title, :artist, :genre, categories_attributes: [:id, :name, :playlist_id])
+        params.require(:song).permit(:title, :artist, :genre, :search, categories_attributes: [:id, :name, :playlist_id])
     end 
 
 end

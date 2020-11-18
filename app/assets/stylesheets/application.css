@@ -64,10 +64,24 @@ p {
 
 input[type=text] {
     border: 4px solid #cbfff8;
+    color:  #ffc8b6
+}
+
+input[type=text]:focus {
+    border: 4px solid #cbfff8;
+    color:  #ffc8b6;
+    outline: none;
 }
 
 textarea {
     border: 4px solid #cbfff8;
+    color:  #ffc8b6
+}
+
+textarea:focus {
+    border: 4px solid #cbfff8;
+    color:  #ffc8b6;
+    outline: none;
 }
 
 input[type=submit] {

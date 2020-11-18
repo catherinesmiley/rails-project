@@ -54,7 +54,37 @@ h4 {
     color:  #ffc8b6
 }
 
+h5 {
+    color:  #ffc8b6
+}
+
 p {
+    color: #18c9af
+}
+
+input[type=text] {
+    border: 4px solid #cbfff8;
+}
+
+textarea {
+    border: 4px solid #cbfff8;
+}
+
+input[type=submit] {
+    background-color: #ffc8b6;
+    border: none;
+    padding: 8px 8px;
+    cursor: pointer;
+    border-radius: 8px;
+    color: #ffffff
+}
+
+input[type=submit]:hover {
+    background-color: #cbfff8;
+    border: none;
+    padding: 8px 8px;
+    cursor: pointer;
+    border-radius: 8px;
     color: #18c9af
 }
 

@@ -13,3 +13,51 @@
  *= require_tree .
  *= require_self
  */
+ 
+body {
+    background-color: #ffffff
+}
+ 
+a:visited {
+    color:	#a5eac6
+}
+
+a:link {
+    color: #a5eac6
+}
+
+a:hover {
+    color: #ffc8b6
+}
+
+ul {
+    color: #18c9af
+}
+
+label {
+    color: #18c9af
+}
+
+h1 {
+    color: #ffc8b6
+}
+
+h2 {
+    color:  #ffc8b6
+}
+
+h3 {
+    color:  #ffc8b6
+}
+
+h4 {
+    color:  #ffc8b6
+}
+
+p {
+    color: #18c9af
+}
+
+/* div#body {
+    background: url("../public/images/whatyoulistento.jpeg")
+} */

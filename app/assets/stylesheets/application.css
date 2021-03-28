@@ -15,8 +15,12 @@
  */
  
 body {
-    /* background-image: url("whatyoulistento.jpg"); */
+    background-image: url(whatyoulistento.jpg);
     background-color: #eaec96;
+    background-repeat: no-repeat, repeat;
+    background-attachment: fixed;
+    background-position: right;
+    background-size: 50%;
 }
  
 a:visited {

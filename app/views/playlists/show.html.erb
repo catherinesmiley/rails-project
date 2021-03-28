@@ -20,7 +20,7 @@
     <% end %>
 </ul>
 
-<%= @playlist.user.username %>
+<h5>Playlist created by: <%= @playlist.user.username %></h5>
 
 <% if @playlist.user == current_user %>
     <%= link_to "Add a song to this playlist", new_playlist_song_path(@playlist) %> / <%= link_to "Edit playlist", edit_playlist_path(@playlist) %><p>

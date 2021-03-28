@@ -19,52 +19,64 @@ body {
 }
  
 a:visited {
-    color:	#a5eac6
+    color:	#a5eac6;
+    font-family: 'Quicksand', sans-serif;
 }
 
 a:link {
-    color: #a5eac6
+    color: #a5eac6;
+    font-family: 'Quicksand', sans-serif;
 }
 
 a:hover {
-    color: #ffc8b6
+    color: #ffc8b6;
+    font-family: 'Quicksand', sans-serif;
 }
 
 ul {
-    color: #18c9af
+    color: #18c9af;
+    font-family: 'Quicksand', sans-serif;
 }
 
 label {
-    color: #18c9af
+    color: #18c9af;
+    font-family: 'Quicksand', sans-serif;
 }
 
 h1 {
-    color: #ffc8b6
+    color: #ffc8b6;
+    font-family: 'Quicksand', sans-serif;
 }
 
 h2 {
-    color:  #ffc8b6
+    color:  #ffc8b6;
+    font-family: 'Quicksand', sans-serif;
 }
 
 h3 {
-    color:  #ffc8b6
+    color:  #ffc8b6;
+    font-family: 'Quicksand', sans-serif;
 }
 
 h4 {
-    color:  #ffc8b6
+    color:  #ffc8b6;
+    font-family: 'Quicksand', sans-serif;
 }
 
 h5 {
-    color:  #ffc8b6
+    color:  #ffc8b6;
+    font-family: 'Quicksand', sans-serif;
 }
 
 p {
-    color: #18c9af
+    color: #18c9af;
+    font-family: 'Quicksand', sans-serif;
 }
 
 input[type=text] {
     border: 4px solid #cbfff8;
-    color:  #ffc8b6
+    color:  #ffc8b6;
+    font-family: 'Quicksand', sans-serif;
 }
 
 input[type=text]:focus {
@@ -75,7 +87,8 @@ input[type=text]:focus {
 
 textarea {
     border: 4px solid #cbfff8;
-    color:  #ffc8b6
+    color:  #ffc8b6;
+    font-family: 'Quicksand', sans-serif;
 }
 
 textarea:focus {
@@ -90,7 +103,8 @@ input[type=submit] {
     padding: 8px 8px;
     cursor: pointer;
     border-radius: 8px;
-    color: #ffffff
+    color: #ffffff;
+    font-family: 'Quicksand', sans-serif;
 }
 
 input[type=submit]:hover {
